@@ -1,0 +1,117 @@
+
+/* Mixins ---------------------------*/ 
+
+// Reset Elements
+.no-margin {
+	margin: 0 !important;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.no-border {
+	border: 0 none !important;
+}
+
+.no-bg {
+	background: none !important;
+	background-image: none;
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}
+
+.no-shadow {
+	box-shadow: 0 0 0 transparent;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+// Reset all
+.reset-all {
+	background: none;
+	background-image: none;
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+	box-shadow: 0 0 0 transparent;
+	border: 0 none;
+	padding: 0;
+}
+
+// Floats
+.floatleft {float: left;}
+.floatright {float: right;}
+
+// Border Radius
+.border-radius(@radius) {
+    -webkit-border-radius: 	@radius;
+    -moz-border-radius: 	@radius;
+    border-radius: 			@radius;
+}
+
+.border-top-left-radius(@radius) {
+    -webkit-border-top-left-radius: 	@radius;
+    -moz-border-radius-topleft: 		@radius;
+    border-top-left-radius: 			@radius;
+}
+
+.border-top-right-radius(@radius) {
+    -webkit-border-top-right-radius: 	@radius;
+    -moz-border-radius-topright: 		@radius;
+    border-top-right-radius: 			@radius;
+}
+
+.border-bottom-right-radius(@radius) {
+    -webkit-border-bottom-right-radius: 	@radius;
+    -moz-border-radius-bottomright: 		@radius;
+    border-bottom-right-radius: 			@radius;
+}
+
+.border-bottom-left-radius(@radius) {
+    -webkit-border-bottom-left-radius: 	@radius;
+    -moz-border-radius-bottomleft: 		@radius;
+    border-bottom-left-radius: 			@radius;
+}
+
+// Single Side Border Radius
+.border-top-radius(@radius) {
+    .border-top-right-radius(@radius);
+    .border-top-left-radius(@radius);
+}
+
+.border-right-radius(@radius) {
+    .border-top-right-radius(@radius);
+    .border-bottom-right-radius(@radius);
+}
+
+.border-bottom-radius(@radius) {
+    .border-bottom-right-radius(@radius);
+    .border-bottom-left-radius(@radius);
+}
+
+.border-left-radius(@radius) {
+    .border-top-left-radius(@radius);
+    .border-bottom-left-radius(@radius);
+}
+
+// Transition
+.transition(@time) {
+	-webkit-transition:    all @time ease-in-out; 
+	   -moz-transition:    all @time ease-in-out; 
+	     ms-transition:    all @time ease-in-out; 
+	     -o-transition:    all @time ease-in-out; 
+	        transition:    all @time ease-in-out;
+}
+
+.text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees); // IE9 only
+          transform: rotate(@degrees);
+}
+
