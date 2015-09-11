@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'site-style.css' %}">
+
+    <title>List of Homes for sale</title>
+</head>
+<body>
+    <h1>Homes for sale</h1>
+
+        <ul>
+        {% for home in home_list %}
+            <li><a href="{% url 'home_detail' home.pk %}">
+                {{ home.address }} {{ home.city }}
+                {{ home.state }} {{ home.zipcode }}</a></li>
+        {% endfor %}
+    </ul>
+
+        {% if is_paginated %}
+    <p>
+        {% if page_obj.has_previous %}
+            <a href="{% url 'home_list' %}?page={{ page_obj.previous_page_number }}"><-Prev</a>
+        {% endif %}
+        {{ page_obj }}
+        {% if page_obj.has_next %}
+            <a href="{% url 'home_list' %}?page={{ page_obj.next_page_number }}">Next-></a>
+        {% endif %}
+    </p>
+    {% endif %}
+    <p>
+        Loaded at: {{ page_load }}
+    </p>
+</body>
+</html>

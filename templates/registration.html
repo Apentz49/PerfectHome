@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'site-style.css' %}">
+    <title>Registration</title>
+</head>
+<body>
+        <h3>New User Registration</h3>
+    <form action = '' method = 'POST'>
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline'%}
+    <input type = 'submit' value = "Register" class="btn btn-danger"/>
+    </form>
+</body>
+</html>

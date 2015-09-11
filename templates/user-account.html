@@ -1,0 +1,543 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<section id="profile-info">
+	
+	<div class="profile-cover-section">
+		<div class="title-section-img">
+			<img src={% static "img/img-coverphoto.jpg" style="top: -380px;"%} />
+		</div>
+	</div>
+
+	<div class="profile-cover-info"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-profile">
+					<span class="sr-only">Toggle Navigation</span>
+					<i class="fa fa-ellipsis-h"></i>
+				</button>
+				<button type="button" class="btn btn-icon hidden-md hidden-lg text-left" data-toggle="offcanvas-sm">
+					<i class="fa fa-user"></i>
+				</button>
+				<div class="clearfix"></div>
+				<div class="collapse navbar-collapse" id="collapse-profile">
+					<ul id="profiletab" class="nav nav-tabs nav-tabs-hollo">
+						<li><a href="user-overview.html">Overview</a></li>
+						<li><a href="user-favorite.html">Favorites</a></li>
+						<li><a href="user-alert.html">Email Alerts</a></li>
+						<li class="current active"><a class='current' href="user-account.html">My Account</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="content">
+	<div class="container">
+		<div class="row row-offcanvas row-offcanvas-left row-offcanvas-sm row-offcanvas-sm-left row-offcanvas-xs box-padding">
+			<div class="col-md-3 sidebar-offcanvas sidebar-offcanvas-sm">
+				
+<div class="aside-profile">
+
+	<div class="panel panel-default panel-profile">
+		<div class="panel-body no-padding">
+			<div class="media profile text-center">
+				<div class="media-avatar">
+					<img src="../img/uif-2.jpg" class="img-circle">
+					<span class="label label-info label-speech">Looking to buy!</span>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Appleseed</h4>
+					<span class="media-meta"><i class="fa fa-map-marker"></i> Kuala Lumpur, Malaysia</span>
+					<!-- <a href="#" class="btn btn-flat-green">Contact</a> -->
+				</div>
+
+				<ul class="list-group list-group-inline media-counter clearfix">
+					<li class="list-group-item col-md-6 col-sm-6 col-xs-6">
+						<span class="counter-number">10</span>
+						<span class="counter-text">Favorites</span>
+					</li>
+					<li class="list-group-item col-md-6 col-sm-6 col-xs-6">
+						<span class="counter-number">5</span>
+						<span class="counter-text">Email Alerts</span>
+					</li>
+				</ul>
+
+				<ul class="list-group text-left">
+					<li class="list-group-item">
+						<h5 class="list-title uppercase">About</h5>
+						<p>
+							Pudding bear claw soufflé chocolate cake carrot cake. Pie marzipan pudding cupcake.
+						</p>
+					</li>
+					<li class="list-group-item">
+						<h5 class="list-title uppercase">Interested in <span>buying</span></h5>
+						<div class="product-tags clean clearfix">
+							<a href="#">Bukit Jalil</a>
+							<a href="#">Subang Jaya</a>
+							<a href="#">Kuala Lumpur</a>
+							<a href="#">Apartment</a>
+							<a href="#">Townhouse</a>
+							<a href="#">Link House</a>
+							<a href="#">Putrajaya</a>
+							<a href="#">Ammenities</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+			</div>
+			<div class="col-md-9">
+				 <div class="profile-content">
+
+	<!-- main tab-content -->
+	<div class="tab-content no-bg no-border">
+
+		<ul id="profiletab-inner" class="nav nav-tabs nav-tabs-line">
+			<li class="active"><a href="#editprofile" data-toggle="tab">Edit Profile</a></li>
+			<li><a href="#emailpref" data-toggle="tab">Email Preferences</a></li>
+			<li><a href="#change" data-toggle="tab">Change Email &amp; Password</a></li>
+		</ul>
+
+		<!-- inner tab-content -->
+		<div class="tab-content tab-content-account">
+
+			<div class="tab-pane fade in active" id="editprofile">
+				<div class="row">
+					<form class="normal-form form-horizontal clearfix">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Username</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="" value="johnappleseed">
+									<span class="help-block">This is your username.</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">First Name</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="" value="John">
+									<span class="help-block">Sample of Help Block.</span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Last Name</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="" value="Appleseed">
+									<span class="help-block">Sample of Help Block.</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Telephone</label>
+								<div class="col-sm-9">
+									<input type="tel" class="form-control" id="" value="+60123456789">
+									<span class="help-block">Number Only.</span>					
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Status</label>
+								<div class="col-sm-9">
+									<select class="form-control selectpicker">
+									 	<option>Looking to Buy</option>
+										<option>$200</option>
+										<option>$300</option>
+										<option>$400</option>
+										<option>$500</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">About</label>
+								<div class="col-sm-9">
+									<textarea rows="5">Pudding bear claw soufflé chocolate cake carrot cake. Pie marzipan pudding cupcake.</textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Interest Tags</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="" value="" data-role="tagsinput">
+									<span class="help-block">Type and press enter for tags.</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="change-avatar text-center">
+								<span class="thumb-md avatar"> 
+									<img src="../img/uif-2.jpg" class="img-circle">
+								</span>
+								<!-- Display filename inside the button instead of its label -->
+								<input type="file" data-filename-placement="inside" title="Change Avatar">
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-9">
+									<button type="submit" class="btn btn-flat-warning">Update</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="emailpref">
+				
+				<div class="row">
+					<form class="normal-form form-horizontal clearfix">
+						<div class="col-md-12">
+							<table class="table">
+								<thead>
+									<tr>
+										<th width="70%">Details</th>
+										<th width="30%" class="text-center">Email Notification</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<h4 class="table-title">Monthly Updates</h4>
+											<span>Croissant halvah tootsie roll candy icing.</span>
+										</td>
+										<td class="text-center">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h4 class="table-title">New Property Offer</h4>
+											<span>Croissant halvah tootsie roll candy icing.</span>
+										</td>
+										<td class="text-center">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h4 class="table-title">New Rent Offer</h4>
+											<span>Croissant halvah tootsie roll candy icing.</span>
+										</td>
+										<td class="text-center">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h4 class="table-title">Message</h4>
+											<span>Croissant halvah tootsie roll candy icing.</span>
+										</td>
+										<td class="text-center">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h4 class="table-title">Latest Promotion</h4>
+											<span>Croissant halvah tootsie roll candy icing.</span>
+										</td>
+										<td class="text-center">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h4 class="table-title">Market Price</h4>
+											<span>Croissant halvah tootsie roll candy icing.</span>
+										</td>
+										<td class="text-center">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox">
+												</label>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="form-group">
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-flat-warning">Update</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+
+			<div class="tab-pane fade" id="change">
+				
+				<div class="row">
+					<form class="normal-form form-horizontal clearfix">
+						<div class="col-md-12">
+
+							<h4 class="form-title">Change Email</h4>
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Old Email</label>
+								<div class="col-sm-9">
+									<input type="email" class="form-control" id="" value="john@email.com">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">New Email</label>
+								<div class="col-sm-9">
+									<input type="email" class="form-control" id="" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Confirm New Email</label>
+								<div class="col-sm-9">
+									<input type="email" class="form-control" id="" value="">
+								</div>
+							</div>
+
+							<h4 class="form-title">Change Password</h4>
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Old Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="" value="thisispasswordsample">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">New Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="" value="">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">Confirm New Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="" value="">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<button type="submit" class="btn btn-flat-warning">Update</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+
+		</div><!-- end inner tab-content -->
+	</div><!-- end main tab-content -->
+</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<section id="mid-section">
+	<div class="container">
+		<div class="row">
+			<!-- Bottom Section -->
+			<div class="bottom-section-inner clearfix">
+
+				<div class="media-item media-item-blog col-sm-12 col-md-8">
+
+					<h4 class="title">In The News</h4>
+
+					<ul class="media-list">
+  						<li class="media">
+  							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Kitchen_Fitting_%286%29.JPG" alt="">
+							</a>
+							<div class="media-body">
+								<a href="#"><h4 class="media-heading">Our 3rd year Anniversary!</h4></a>
+								<span class="item-meta">By <a href="#">Alex Murphy</a> <span class="pipe">|</span> <i class="fa fa-calendar"></i> March 3rd 2014 <span class="pipe">|</span> <i class="fa fa-comment"></i> 10</span>
+								<p>
+									Lemon drops marshmallow wafer carrot cake cheesecake donut chocolate bar. Unerdwear.com gingerbread applicake lollipop carrot cake. Tootsie roll gummi bears sweet liquorice...
+								</p>
+								<a href="#" class="readmore">Continue Reading <i class="fa fa-arrow-right"></i></a>
+							</div>
+						</li>
+
+						<li class="media">
+							<div class="media-body">
+								<a class="media-left" href="#">
+									<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Kitchen_Fitting_%286%29.JPG" alt="">
+								</a>
+								<div class="media-body">
+									<a href="#"><h4 class="media-heading">Our 3rd year Anniversary!</h4></a>
+									<span class="item-meta">By <a href="#">Alex Murphy</a> <span class="pipe">|</span> <i class="fa fa-calendar"></i> March 3rd 2014 <span class="pipe">|</span> <i class="fa fa-comment"></i> 10</span>
+									<p>
+										Lemon drops marshmallow wafer carrot cake cheesecake donut chocolate bar. Unerdwear.com gingerbread applicake lollipop carrot cake. Tootsie roll gummi bears sweet liquorice...
+									</p>
+									<a href="#" class="readmore">Continue Reading <i class="fa fa-arrow-right"></i></a>
+								</div>
+							</div>
+						</li>
+
+						<li class="media">
+							<div class="media-body">
+								<a class="media-left" href="#">
+									<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Kitchen_Fitting_%286%29.JPG" alt="">
+								</a>
+								<div class="media-body">
+									<a href="#"><h4 class="media-heading">Our 3rd year Anniversary!</h4></a>
+									<span class="item-meta">By <a href="#">Alex Murphy</a> <span class="pipe">|</span> <i class="fa fa-calendar"></i> March 3rd 2014 <span class="pipe">|</span> <i class="fa fa-comment"></i> 10</span>
+									<p>
+										Lemon drops marshmallow wafer carrot cake cheesecake donut chocolate bar. Unerdwear.com gingerbread applicake lollipop carrot cake. Tootsie roll gummi bears sweet liquorice...
+									</p>
+									<a href="#" class="readmore">Continue Reading <i class="fa fa-arrow-right"></i></a>
+								</div>
+							</div>
+						</li>
+
+						<li class="media link-more">
+							<a href="#">
+								View More
+							</a>
+						</li>
+
+					</ul>
+
+				</div>
+
+				<div class="media-item col-sm-12 col-md-4">
+					
+					<h4 class="title">Recently Listed</h4>
+					
+					<ul class="media-list media-list-mini">
+  						<li class="media">
+							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Kitchen_Fitting_%286%29.JPG" alt="">
+							</a>
+
+							<div class="media-body">
+								<a href="#">
+									<h5>Mutiara Ville</h5>
+									<h4 class="media-heading">$345,000</h4>
+									<span class="location"><i class="fa fa-map-marker"></i> Subang Jaya, Selangor</span>
+								</a>
+							</div>
+						</li>
+
+						<li class="media">
+							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/5/57/Earth_house_interior1.jpg" alt="">
+							</a>
+
+							<div class="media-body">
+								<a href="#">
+									<h5>Eco Heights</h5>
+									<h4 class="media-heading">$257,000</h4>
+									<span class="location"><i class="fa fa-map-marker"></i> Cyberjaya, Selangor</span>
+								</a>
+							</div>
+						</li>
+
+						<li class="media">
+							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Kitchen_Fitting_%286%29.JPG" alt="">
+							</a>
+
+							<div class="media-body">
+								<a href="#">
+									<h5>Eco Alam Park</h5>
+									<h4 class="media-heading">$855,000</h4>
+									<span class="location"><i class="fa fa-map-marker"></i> Setia Alam, Selangor</span>
+								</a>
+							</div>
+						</li>
+
+						<li class="media">
+							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/5/57/Earth_house_interior1.jpg" alt="">
+							</a>
+
+							<div class="media-body">
+								<a href="#">
+									<h5>Eco Alam Park</h5>
+									<h4 class="media-heading">$855,000</h4>
+									<span class="location"><i class="fa fa-map-marker"></i> Setia Alam, Selangor</span>
+								</a>
+							</div>
+						</li>
+
+						<li class="media">
+							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Kitchen_Fitting_%286%29.JPG" alt="">
+							</a>
+
+							<div class="media-body">
+								<a href="#">
+									<h5>Mutiara Ville</h5>
+									<h4 class="media-heading">$345,000</h4>
+									<span class="location"><i class="fa fa-map-marker"></i> Subang Jaya, Selangor</span>
+								</a>
+							</div>
+						</li>
+
+						<li class="media">
+							<a class="media-left" href="#">
+								<img class="media-object" src="http://upload.wikimedia.org/wikipedia/commons/5/57/Earth_house_interior1.jpg" alt="">
+							</a>
+
+							<div class="media-body">
+								<a href="#">
+									<h5>Eco Heights</h5>
+									<h4 class="media-heading">$257,000</h4>
+									<span class="location"><i class="fa fa-map-marker"></i> Cyberjaya, Selangor</span>
+								</a>
+							</div>
+						</li>
+
+						<li class="media link-more">
+							<a href="#">
+								View More
+							</a>
+						</li>
+
+					</ul>
+				</div>
+
+
+			</div>
+			<!-- End Bottom Section -->
+		</div>
+	</div>
+</section>
+{% endblock %}

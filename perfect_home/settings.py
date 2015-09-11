@@ -80,10 +80,21 @@ WSGI_APPLICATION = 'perfect_home.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'homes',
+        'USER': 'AaronPentz',
+        'PASSWORD': '',
+        'HOST':'127.0.0.1',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Internationalization
@@ -110,3 +121,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "global"),
 )
+
+BOOTSTRAP3 = {
+    # The URL to the jQuery JavaScript file
+    'jquery_url': '/static/jquery-2.1.4.min.js',
+
+    # The Bootstrap base URL
+    'base_url': '/static/bootstrap/',
+
+    # The complete URL to the Bootstrap CSS file (None means no theme)
+    'theme_url': '/static/bootstrap/css/style.css',
+
+    # Include jQuery with Bootstrap JavaScript
+    #  (affects django-bootstrap3 template tags)
+    'include_jquery': True,
+}
