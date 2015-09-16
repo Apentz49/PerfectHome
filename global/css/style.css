@@ -1842,6 +1842,9 @@ form .help-block {
 .grid-layout .prop-item .thumbnail .thumbnail-body {
   text-align: left;
 }
+.sameh {
+  text-align: left;
+}
 .grid-layout .prop-item .thumbnail .thumbnail-body .caption {
   padding: 15px 15px 0;
   position: relative;
@@ -2077,7 +2080,7 @@ form .help-block {
 }
 .list-layout .prop-item .thumbnail .link-action a.save-favorite .fa {
   color: #7f8c8d;
-  font-size: 15px;
+  /*font-size: 15px;*/
 }
 .list-layout .prop-item .thumbnail .link-action a.save-favorite:hover .fa {
   color: #667273;
@@ -2876,6 +2879,12 @@ form .help-block {
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 0 transparent;
+}
+.panel-aside-1 {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 transparent;
+  top: 41px;
 }
 .panel-aside .panel-title {
   font-size: 15px;

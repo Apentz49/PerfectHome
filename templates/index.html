@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load humanize %}
 {% block content %}
 <section id="product-search">
 
@@ -10,7 +11,7 @@
 			
 			<!-- Search Listing -->
 			<div class="product-list-search sidebar-offcanvas">
-				<form class="form-search" role="form">
+				<form class="form-search" role="form" action="{% url "list" %}" method="get" id="searchform">
 					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
 						<div class="product-list-search-inner">
 
@@ -28,112 +29,61 @@
 							</div>
 						
 							<div class="form-group col-md-12">
-								<input type="text" class="form-control" id="" placeholder="City, St. or Zipcode">
+								<input type="text" class="form-control" name="q" id="searchform" placeholder="City, St. or Zipcode">
 							</div>
 
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Min Price</label>
-								<select class="form-control selectpicker">
-								 	<option>$0</option>
-									<option>$50,000</option>
-									<option>$100,000</option>
-									<option>$200,000</option>
-									<option>$300,000</option>
-                                    <option>$500,000</option>
-								</select>
-							</div>
+{#							<div class="form-group col-md-6 col-sm-6">#}
+{#								<label for="">Min Price</label>#}
+{#								<select class="form-control selectpicker">#}
+{#								 	<option>$0</option>#}
+{#									<option>$50,000</option>#}
+{#									<option>$100,000</option>#}
+{#									<option>$200,000</option>#}
+{#									<option>$300,000</option>#}
+{#                                    <option>$500,000</option>#}
+{#								</select>#}
+{#							</div>#}
 
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Max Price</label>
-								<select class="form-control selectpicker">
-								 	<option>$100,000</option>
-									<option>$200,000</option>
-									<option>$300,000</option>
-									<option>$400,000</option>
-									<option>$500,000+</option>
-								</select>
-							</div>
-
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Bedrooms</label>
-								<select class="form-control selectpicker">
-								 	<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5+</option>
-								</select>
-							</div>
-
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Bathrooms</label>
-								<select class="form-control selectpicker">
-								 	<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-
+{#							<div class="form-group col-md-6 col-sm-6">#}
+{#								<label for="">Max Price</label>#}
+{#								<select class="form-control selectpicker">#}
+{#								 	<option>$100,000</option>#}
+{#									<option>$200,000</option>#}
+{#									<option>$300,000</option>#}
+{#									<option>$400,000</option>#}
+{#									<option>$500,000+</option>#}
+{#								</select>#}
+{#							</div>#}
+{##}
+{#							<div class="form-group col-md-6 col-sm-6">#}
+{#								<label for="">Bedrooms</label>#}
+{#								<select class="form-control selectpicker">#}
+{#								 	<option>1</option>#}
+{#									<option>2</option>#}
+{#									<option>3</option>#}
+{#									<option>4</option>#}
+{#									<option>5+</option>#}
+{#								</select>#}
+{#							</div>#}
+{##}
+{#							<div class="form-group col-md-6 col-sm-6">#}
+{#								<label for="">Bathrooms</label>#}
+{#								<select class="form-control selectpicker">#}
+{#								 	<option>1</option>#}
+{#									<option>2</option>#}
+{#									<option>3</option>#}
+{#									<option>4</option>#}
+{#									<option>5</option>#}
+{#								</select>#}
+{#							</div>#}
 							<div id="advanced-search" class="form-group form-action col-md-12">
 {#								<a href="#" class="adv-link">Advanced Search</a>#}
 								<button type="submit" class="btn-search btn btn-flat-alizarin">Search</button>
 							</div>
 						</div>
-
 						<div class="advanced-search">
-							<a href="#" class="adv-link"><i class="fa fa-times"></i></a>
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Distance from Location</label>
-								<select class="form-control selectpicker">
-								 	<option>This area only</option>
-									<option>Within 1 km</option>
-									<option>Within 2 km</option>
-									<option>Within 3 km</option>
-									<option>Within 4 km</option>
-								</select>
-							</div>
-
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Added</label>
-								<select class="form-control selectpicker">
-								 	<option>Anytime</option>
-									<option>last 24 hours</option>
-									<option>Last 3 days ago</option>
-									<option>Last 5 days ago</option>
-									<option>Last 7 days ago</option>
-								</select>
-							</div>
-
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Sort By</label>
-								<select class="form-control selectpicker">
-								 	<option>Most Recent</option>
-									<option>Highest Price</option>
-									<option>Lowest Price</option>
-									<option>Featured only</option>
-									<option>Most Popular</option>
-								</select>
-							</div>
-
-							<div class="form-group col-md-6 col-sm-6">
-								<label for="">Bedrooms</label>
-								<select class="form-control selectpicker">
-								 	<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-
-							<div class="form-group col-md-12">
-								<label for="">Search using Keywords</label>
-								<input type="text" class="form-control" id="" placeholder="eg: gardens, pool, security">
-							</div>
 						</div>
-					</div>
+						</div>
 				</form>
 			</div>
 			<!-- end Search Listing -->
@@ -153,7 +103,7 @@
 						<!-- Wrapper for slides -->
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="http://upload.wikimedia.org/wikipedia/commons/f/f5/CITIB-15.jpg" alt="...">
+								<img src="http://cdn-0.eneighborhoods.com/x2/@v=614822612@/170/0/018/1573018/1573018_1.jpg" alt="...">
 								<div class="carousel-caption">
 									<div class="media">
 										<a class="pull-left" href="#">
@@ -161,14 +111,14 @@
 										</a>
 										<div class="media-body">
 											<a href="#"><h4 class="media-heading">Umbrella Property Ptd Ltd</h4></a>
-											<p>Kristal View, Shah Alam</p>
+											<p>Las Vegas, NV.</p>
 										</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="item">
-								<img src="http://upload.wikimedia.org/wikipedia/commons/d/d0/Art_Deco_type_house.jpg" alt="...">
+								<img src="http://cdn-0.eneighborhoods.com/x2/@v=-1516012976@/170/8/870/1572870/1572870_1.jpg" alt="...">
 								<div class="carousel-caption">
 									<div class="media">
 										<a class="pull-left" href="#">
@@ -176,14 +126,14 @@
 										</a>
 										<div class="media-body">
 											<a href="#"><h4 class="media-heading">Rain &amp; Shine Realty</h4></a>
-											<p>Shoreditch, London</p>
+											<p>Henderson, NV.</p>
 										</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="item">
-								<img src="http://upload.wikimedia.org/wikipedia/commons/4/40/Dammtrappgatan_34-36_Enskede_G%C3%A5rd_002.jpg" alt="...">
+								<img src="http://cdn3.static-homes.com/cgi-bin/readimage/b96b207ba12669a9d531737e91e7d024" alt="...">
 								<div class="carousel-caption">
 									<div class="media">
 										<a class="pull-left" href="#">
@@ -191,7 +141,7 @@
 										</a>
 										<div class="media-body">
 											<a href="#"><h4 class="media-heading">The Dots Property</h4></a>
-											<p>USJ One, Subang Jaya</p>
+											<p>Las Vegas, NV.</p>
 										</div>
 									</div>
 								</div>
@@ -228,21 +178,18 @@
 			<div class="col-sm-12 col-md-12 the-title text-left">
 				<div class="row">
 					<div class="col-md-6 col-sm-7 col-xs-8">
-						<h2>Featured Listing</h2>
-						<span>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</span>
-					</div>
-					<div class="col-md-6 col-sm-5 col-xs-4">
-						<a class="pull-right btn btn-flat-alizarin"><span>View More Listing</span> <i class="fa fa-arrow-right"></i></a>
+						<h2>Featured Listings</h2>
+
 					</div>
 				</div>
 			</div>
-
+            {% for home in homelist|slice:":4" %}
 			<div class="prop-item col-sm-6 col-md-3">
 				<div class="thumbnail">
 					<div class="thumbnail-img thumbscrubber">
 					    <span class="ts-inner">
 					    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/89/Semi-detached_house_in_Darlow_Street%2C_Wagga_Wagga.jpg" alt="House" class="ts-currslide">
+<img src='{{ home.img }}' alt="House" class="ts-currslide">
 <img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
 <img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">
 <img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
@@ -251,18 +198,18 @@
 					
 					<div class="thumbnail-body">
 						<div class="caption">
-							<a href="">
-								<h3>Cute House</h3>
-								<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-								<div class="prop-price">$125 <span>/ mo</span></div>
+							<a href= {% url 'detail' home.id %}>
+
+								<h3><span class="prop-address">{{ home.address }}<br> {{ home.city }}, {{ home.state }}. {{ home.zipcode }}</span></h3>
+								<div class="prop-price">${{ home.price|intcomma }} <span></span></div>
 							</a>
 						</div>
 
 						<div class="content clearfix">
 							<ul class="list-unstyled feature-list">
-								<li>4 Bedrooms</li>
-								<li>3 Baths</li>
-								<li>1000 ft <sup>2</sup></li>
+								<li>{{ home.bedrooms }} Bedrooms</li>
+								<li>{{ home.bathrooms }} Bathrooms</li>
+								<li>{{ home.sqft }} ft <sup>2</sup></li>
 							</ul>
 
 							<div class="link-action clearfix">
@@ -274,126 +221,7 @@
 
 				</div>
 			</div>
-
-			<div class="prop-item col-sm-6 col-md-3">
-				<div class="thumbnail">
-											
-					<div class="thumbnail-img thumbscrubber">
-					    <span class="ts-inner">
-					    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/c4/Baile_na_Tr%C3%A0gha_471097.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/84/Salle-de-bain.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/cc/Tadelakt_1.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
-
-
-					    </span>
-					</div>
-					
-					<div class="thumbnail-body">
-						<div class="caption">
-							<a href="#">
-								<h3>Long House</h3>
-								<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-								<div class="prop-price">$125 <span>/ mo</span></div>
-							</a>
-						</div>
-
-						<div class="content clearfix">
-							<ul class="list-unstyled feature-list">
-								<li>4 Bedrooms</li>
-								<li>3 Baths</li>
-								<li>1000 ft <sup>2</sup></li>
-							</ul>
-
-							<div class="link-action clearfix">
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You like this!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not your style!"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-
-			<div class="prop-item col-sm-6 col-md-3">
-				<div class="thumbnail">
-						
-					<div class="thumbnail-img thumbscrubber">
-					    <span class="ts-inner">
-					       
-<img src="http://upload.wikimedia.org/wikipedia/commons/e/ea/Mtlvdbhomes.jpg" alt="House">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/7e/LR1_%284150282769%29.jpg" alt="Family Room" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/84/Bleekman_zimmer.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/0/03/Opo%C4%8Dno_castle_in_2009_23.JPG" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/f/f2/COCINA2.jpg" alt="Kitchen">
-
-
-					    </span>
-					</div>
-					
-					<div class="thumbnail-body">
-						<div class="caption">
-							<a href="#">
-								<h3>Semi-Detached House</h3>
-								<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-								<div class="prop-price">$125 <span>/ mo</span></div>
-							</a>
-						</div>
-
-						<div class="content clearfix">
-							<ul class="list-unstyled feature-list">
-								<li>4 Bedrooms</li>
-								<li>3 Baths</li>
-								<li>1000 ft <sup>2</sup></li>
-							</ul>
-
-							<div class="link-action clearfix">
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You like this!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not your style!"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-							</div>
-						</div>
-					</div>
-				
-				</div>
-			</div>
-
-			<div class="prop-item col-sm-6 col-md-3">
-				<div class="thumbnail">
-
-					<div class="thumbnail-img thumbscrubber">
-					    <span class="ts-inner">
-					       
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b0/Semi-Detached_House_with_Ford_Escort_car.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Family_room_in_Camarillo%2C_California%2C_USA.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Bedroom_Mitcham.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/c1/Calhoun_bathroom.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/e/e7/Highgrove_Kitchen.jpg" alt="Kitchen">
-
-
-					    </span>
-					</div>
-					<div class="thumbnail-body">
-						<div class="caption">
-							<h3>Cute House</h3>
-							<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-							<div class="prop-price">$125 <span>/ mo</span></div>
-						</div>
-
-						<div class="content clearfix">
-							<ul class="list-unstyled feature-list">
-								<li>4 Bedrooms</li>
-								<li>3 Baths</li>
-								<li>1000 ft <sup>2</sup></li>
-							</ul>
-
-							<div class="link-action clearfix">
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You like this!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not your style!"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-							</div>
-						</div>
-					</div>
+            {% endfor %}
 
 				</div>
 			</div>

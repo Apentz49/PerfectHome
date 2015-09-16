@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# TODO Clean up old fields
 class Home(models.Model):
     address = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
@@ -15,17 +14,18 @@ class Home(models.Model):
     year_built = models.CharField(max_length=5, null=True, blank=True)
     price = models.CharField(max_length=50, null=True)
     price_per_sqft = models.CharField(max_length=10, null=True, blank=True)
+    img = models.CharField(max_length=500, null=True, blank=True)
     user = models.ManyToManyField(User)
 
     def __str__(self):
         return ("Address:{}, City: {}, State {}, Zipcode {},"
                 "Bedrooms: {}, Bathrooms: {}, Sqft: {}, Lot Size: {}, Year Built: {},"
-                "Price: {}, Price Per Sqft: {}".format(self.address,
+                "Price: {}, Price Per Sqft: {}, Img: {}".format(self.address,
                                                             self.city,
                                    self.state, self.zipcode, self.bedrooms,
                                    self.bathrooms, self.sqft,
                                    self.lot_size, self.year_built,
-                                   self.price, self.price_per_sqft))
+                                   self.price, self.price_per_sqft, self.img))
 
 
 class Customer(models.Model):

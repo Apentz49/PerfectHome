@@ -71,14 +71,12 @@
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Property Pages <b class="caret"></b></a>
 										<ul class="dropdown-menu">
 											<li><a href={% url 'list' %}>Property Listings</a></li>
-											<li><a href={% url 'detail' %}>Single Property Listing</a></li>
+{#											<li><a href={% url 'detail' home.id %}>Single Property Listing</a></li>#}
 										</ul>
 									</li>
 									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
 										<ul class="dropdown-menu">
-											<li><a href="about.html">About Us</a></li>
-											<li><a href="contact.html">Contact</a></li>
 											<li><a href={% url 'profile' %}>User Profile</a></li>
 										</ul>
 									</li>
@@ -138,66 +136,66 @@
 
 		<section id="footer">
 
-			<div class="container">
-				<div class="row">
-					<div class="inner-column clearfix">
-
-						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-							<h5 class="">Company</h5>
-							<ul class="list-unstyled">
-					            <li><a href="#">About Us</a></li>
-					            <li><a href="#">API</a></li>
-					            <li><a href="#">Press</a></li>
-					            <li><a href="#">Blog</a></li>
-					            <li><a href="#">Careers</a></li>
-					            <li><a href="#">Terms of Use</a></li>
-					            <li><a href="#">Contact Us</a></li>
-					        </ul>
-						</div>
-
-						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-							<h5 class="">Features</h5>
-							<ul class="list-unstyled">
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">RealtyFinder</a></li>
-					            <li><a href="#">Price Study</a></li>
-					            <li><a href="#">Market Trend</a></li>
-					            <li><a href="#">Email Alert</a></li>
-					            <li><a href="#">IOS App</a></li>
-					            <li><a href="#">Android App</a></li>
-					        </ul>
-						</div>
-
-						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-							<h5 class="">Top Properties Listed</h5>
-							<ul class="list-unstyled">
-					            <li><a href="#">Apartments</a></li>
-					            <li><a href="#">Condominiums</a></li>
-					            <li><a href="#">Bungalows</a></li>
-					            <li><a href="#">Semi-Detached Houses</a></li>
-					            <li><a href="#">Terrace / Link Houses</a></li>
-					            <li><a href="#">Serviced Residence</a></li>
-					            <li><a href="#">Offices</a></li>
-					        </ul>
-						</div>
-
-						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-							<h5 class="">Popular Searches</h5>
-							<div class="product-tags clearfix">
-								<a href="#">Bukit Jalil</a>
-								<a href="#">New York</a>
-								<a href="#">Kuala Lumpur</a>
-								<a href="#">Kristal View</a>
-								<a href="#">Cyberjaya</a>
-								<a href="#">Kyoto</a>
-								<a href="#">Putrajaya</a>
-								<a href="#">Damansara Perdana</a>
-								<a href="#">USJ Heights</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+{#			<div class="container">#}
+{#				<div class="row">#}
+{#					<div class="inner-column clearfix">#}
+{##}
+{#						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">#}
+{#							<h5 class="">Company</h5>#}
+{#							<ul class="list-unstyled">#}
+{#					            <li><a href="#">About Us</a></li>#}
+{#					            <li><a href="#">API</a></li>#}
+{#					            <li><a href="#">Press</a></li>#}
+{#					            <li><a href="#">Blog</a></li>#}
+{#					            <li><a href="#">Careers</a></li>#}
+{#					            <li><a href="#">Terms of Use</a></li>#}
+{#					            <li><a href="#">Contact Us</a></li>#}
+{#					        </ul>#}
+{#						</div>#}
+{##}
+{#						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">#}
+{#							<h5 class="">Features</h5>#}
+{#							<ul class="list-unstyled">#}
+{#								<li><a href="#">My Account</a></li>#}
+{#								<li><a href="#">RealtyFinder</a></li>#}
+{#					            <li><a href="#">Price Study</a></li>#}
+{#					            <li><a href="#">Market Trend</a></li>#}
+{#					            <li><a href="#">Email Alert</a></li>#}
+{#					            <li><a href="#">IOS App</a></li>#}
+{#					            <li><a href="#">Android App</a></li>#}
+{#					        </ul>#}
+{#						</div>#}
+{##}
+{#						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">#}
+{#							<h5 class="">Top Properties Listed</h5>#}
+{#							<ul class="list-unstyled">#}
+{#					            <li><a href="#">Apartments</a></li>#}
+{#					            <li><a href="#">Condominiums</a></li>#}
+{#					            <li><a href="#">Bungalows</a></li>#}
+{#					            <li><a href="#">Semi-Detached Houses</a></li>#}
+{#					            <li><a href="#">Terrace / Link Houses</a></li>#}
+{#					            <li><a href="#">Serviced Residence</a></li>#}
+{#					            <li><a href="#">Offices</a></li>#}
+{#					        </ul>#}
+{#						</div>#}
+{##}
+{#						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">#}
+{#							<h5 class="">Popular Searches</h5>#}
+{#							<div class="product-tags clearfix">#}
+{#								<a href="#">Bukit Jalil</a>#}
+{#								<a href="#">New York</a>#}
+{#								<a href="#">Kuala Lumpur</a>#}
+{#								<a href="#">Kristal View</a>#}
+{#								<a href="#">Cyberjaya</a>#}
+{#								<a href="#">Kyoto</a>#}
+{#								<a href="#">Putrajaya</a>#}
+{#								<a href="#">Damansara Perdana</a>#}
+{#								<a href="#">USJ Heights</a>#}
+{#							</div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
 
 
 		</section>
@@ -365,6 +363,33 @@
 
 <!-- Custom JS for zRealty -->
 <script src={% static "js/custom.style.js" type="text/javascript"%}></script>
+
+<script>
+ function setEqualHeight(selector, triggerOnInput) {
+    	var elements = $(selector)
+    	elements.css("height", "auto")
+    	var max = Number.NEGATIVE_INFINITY;
+    	$.each(elements, function(index, item) {
+    		if ($(item).height() > max) {
+    			max = $(item).height()
+    		}
+    	})
+    	$(selector).css("height", max + "px")
+
+    	if (!!triggerOnInput) {
+    		$(document).on("input", selector, function() {
+    			setEqualHeight(selector, false)
+
+    		})
+    	}
+
+    	$(window).resize(function() {
+    		setEqualHeight(selector, false)
+    	})
+    }
+
+        setEqualHeight(".sameh", true)
+</script>
 
 </body>
 

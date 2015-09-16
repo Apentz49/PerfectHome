@@ -11,4 +11,4 @@ class CustomerAdmin(admin.ModelAdmin):
 class HomeAdmin(admin.ModelAdmin):
     list_display = ('address','city', 'state', 'zipcode', 'price', 'sqft',
                     'bedrooms', 'bathrooms', 'lot_size', 'price_per_sqft',
-                    'year_built')
+                    'year_built', 'img')

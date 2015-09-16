@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'debug_toolbar',
     'homes',
+    'django.contrib.humanize',
 )
 
 MIDDLEWARE_CLASSES = (
