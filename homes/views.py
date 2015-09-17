@@ -2,10 +2,9 @@ import datetime
 from functools import reduce
 import operator
 from django.contrib.auth import authenticate, login
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from homes.forms import CustomerCreationForm
@@ -118,9 +117,7 @@ def home_like(request, home_id):
 
     like = Like.objects.create(user=customer, home=home)
 
-
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
 
 
 class DislikeHomes(ListView):
@@ -143,7 +140,6 @@ def home_dislike(request, home_id):
 
     like = Dislike.objects.create(user=customer, home=home)
 
-
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
@@ -152,32 +148,7 @@ def profile_view(request, user_id):
     customer = user.customer
     like_list = Like.objects.all()
     dislike_list = Dislike.objects.all()
-    paginator_like = Paginator(like_list, 4)
-    paginator_dislike = Paginator(dislike_list, 4)
-
-    page = request.GET.get('page')
-
-    try:
-        likepg = paginator_like.page(page)
-        dislikepg = paginator_dislike.page(page)
-    except PageNotAnInteger:
-
-        likepg = paginator_like.page(1)
-        dislikepg = paginator_dislike.page(1)
-    except EmptyPage:
-
-        likepg = paginator_like.page(paginator_like.num_pages)
-        dislikepg = paginator_dislike.page(paginator_dislike.num_pages)
 
     return render(request, 'user-overview.html', {'like_list': like_list,
-                                                  'dislike_list': dislike_list})
-
-# class ProfileView(ListView):
-#
-#     model = Home
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(ProfileView, self).get_context_data(**kwargs)
-#         context['like_list'] = LikeHomes.objects.all()
-#         context['dislike_list'] = DislikeHomes.objects.all()
-#         return context
+                                                  'dislike_list':
+                                                      dislike_list})
