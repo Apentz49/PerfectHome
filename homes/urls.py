@@ -1,13 +1,16 @@
 from django.conf.urls import url
-from django.views.generic import TemplateView
 from homes.views import HomeDetail, HomeSearchListView
 
 urlpatterns = [
 
-    url(r'^property-listing/', HomeSearchListView.as_view
+    url(r'^property-listing/$', HomeSearchListView.as_view
         (template_name='property-listing.html'), name='list'),
-    url(r'^user-account/', TemplateView.as_view
-        (template_name='user-overview.html'), name='profile'),
+    url(r'^property-listing/(?P<home_id>[0-9]+)/like', 'homes.views.home_like',
+        name='likes'),
+    url(r'^property-listing/(?P<home_id>[0-9]+)/dislike',
+        'homes.views.home_dislike', name='dislikes'),
+    url(r'^user-account/(?P<user_id>[0-9]+)', 'homes.views.profile_view',
+        name='profile'),
     url(r'^(?P<home_id>[0-9]+)/', HomeDetail.as_view(), name="detail"),
 
 ]

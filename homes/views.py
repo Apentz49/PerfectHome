@@ -2,16 +2,20 @@ import datetime
 from functools import reduce
 import operator
 from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, render_to_response
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from homes.forms import CustomerCreationForm, HomeSearchForm
-from homes.models import Customer, Home
+from homes.forms import CustomerCreationForm
+from homes.models import Customer, Home, Like, Dislike
 
 
 def create_user(request):
+    """
+    Create a Customer and User
+    """
     if request.method == "POST":
         form = CustomerCreationForm(data=request.POST)
         if form.is_valid():
@@ -37,6 +41,9 @@ def create_user(request):
 
 
 class HomeList(ListView):
+    """
+    View for home page
+    """
     model = Home
     template_name = "index.html"
     queryset = Home.objects.all()
@@ -47,27 +54,6 @@ class HomeList(ListView):
         context = super(HomeList, self).get_context_data(**kwargs)
         context['page_load'] = datetime.datetime.now()
         return context
-
-
-# def home_search(request):
-#     if request.method == 'GET':
-#         results = Home.objects.all()
-#
-#         search = request.GET.get('search', None)
-#         if search:
-#             results = results.filter(Q(zipcode=search)|Q(bedrooms=search)|Q(bathrooms=search)|Q(min_price=search))
-#
-#         bathrooms = request.GET.get('bathrooms', None)
-#         if bathrooms:
-#             results = results.filter(bathrooms=bathrooms)
-#
-#         bedrooms = request.GET.get('bedrooms', None)
-#         if bedrooms:
-#             results = results.filter(bedrooms=bedrooms)
-#
-#         return render_to_response('property-listing.html', {'form': HomeSearchForm(request.GET), 'home': results})
-#
-#     return render_to_response('property-listing.html', {'form': HomeSearchForm()})
 
 
 class HomeSearchListView(ListView):
@@ -95,24 +81,103 @@ class HomeSearchListView(ListView):
                        (Q(zipcode__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                        (Q(city__icontains=q) for q in query_list))
+
             )
+        result = result.exclude(like__isnull=False)
+        result = result.exclude(dislike__isnull=False)
 
         return result
 
 
-# class SearchList(ListView):
-#     model = Home
-#     template_name = "property-listing.html"
-#     queryset = Home.objects.all()
-#     context_object_name = "searchlist"
-#     paginate_by = 12
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(SearchList, self).get_context_data(**kwargs)
-#         context['page_load'] = datetime.datetime.now()
-#         return context
-
 class HomeDetail(DetailView):
+    """
+    View for a Homes detail page
+    """
     model = Home
     pk_url_kwarg = 'home_id'
     template_name = 'single-property-listing.html'
+
+
+class LikeHomes(ListView):
+
+    model = Home
+    context_object_name = 'like_list'
+    queryset = Like.objects.all()
+    template_name = 'user-overview.html'
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super(LikeHomes, self).get_context_data(**kwargs)
+        return context
+
+
+def home_like(request, home_id):
+    user = request.user
+    customer = user.customer
+    home = Home.objects.get(id=home_id)
+
+    like = Like.objects.create(user=customer, home=home)
+
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+
+class DislikeHomes(ListView):
+
+    model = Home
+    context_object_name = 'dislike_list'
+    queryset = Dislike.objects.all()
+    template_name = 'user-overview.html'
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super(DislikeHomes, self).get_context_data(**kwargs)
+        return context
+
+
+def home_dislike(request, home_id):
+    user = request.user
+    customer = user.customer
+    home = Home.objects.get(id=home_id)
+
+    like = Dislike.objects.create(user=customer, home=home)
+
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def profile_view(request, user_id):
+    user = request.user
+    customer = user.customer
+    like_list = Like.objects.all()
+    dislike_list = Dislike.objects.all()
+    paginator_like = Paginator(like_list, 4)
+    paginator_dislike = Paginator(dislike_list, 4)
+
+    page = request.GET.get('page')
+
+    try:
+        likepg = paginator_like.page(page)
+        dislikepg = paginator_dislike.page(page)
+    except PageNotAnInteger:
+
+        likepg = paginator_like.page(1)
+        dislikepg = paginator_dislike.page(1)
+    except EmptyPage:
+
+        likepg = paginator_like.page(paginator_like.num_pages)
+        dislikepg = paginator_dislike.page(paginator_dislike.num_pages)
+
+    return render(request, 'user-overview.html', {'like_list': like_list,
+                                                  'dislike_list': dislike_list})
+
+# class ProfileView(ListView):
+#
+#     model = Home
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(ProfileView, self).get_context_data(**kwargs)
+#         context['like_list'] = LikeHomes.objects.all()
+#         context['dislike_list'] = DislikeHomes.objects.all()
+#         return context

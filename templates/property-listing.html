@@ -39,15 +39,6 @@
 						<div class="col-xs-12 col-sm-7 col-md-7">
 							<form class="form-inline pull-right">
 								<ul class="list-unstyled filter-gridlist">
-{#									<li class="filter-select">#}
-{#										Sort by:#}
-{#										<select class="form-control selectpicker">#}
-{#											<option>Most Recent</option>#}
-{#											<option>Highest Price</option>#}
-{#											<option>Lower Price</option>#}
-{#											<option>Most Popular</option>#}
-{#										</select>#}
-{#									</li>#}
 									<li class="hidden-xs">
 										<a href="#" data-toggle="tooltip" data-placement="top" title="Grid View" id="gridview" class="switcher active"><i class="fa fa-th"></i></a>
 									</li>
@@ -71,9 +62,9 @@
 					    <span class="ts-inner">
 					        
 <img src="{{ home.img }}" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
+{#<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">#}
+{#<img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">#}
+{#<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">#}
 					    </span>
 					</div>
 					<div class="thumbnail-body">
@@ -88,15 +79,16 @@
 						</div>
 
 						<div class="content clearfix">
-							<ul class="list-unstyled feature-list">
+							<ul class="list-unstyled feature-list" style="height: 61px;">
 								<li>{{ home.bedrooms }} Bedrooms</li>
 								<li>{{ home.bathrooms }} Baths</li>
 								<li>{{ home.sqft }} ft <sup>2</sup></li>
 							</ul>
 
 							<div class="link-action clearfix">
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You Like This!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not Your Style"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
+
+								<a href="{% url 'likes' home.pk %}" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You Like This!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
+								<a href="{% url 'dislikes' home.pk %}" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not Your Style"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
 							</div>
 						</div>
 					</div>

@@ -1886,6 +1886,7 @@ form .help-block {
 }
 .grid-layout .prop-item .thumbnail img {
   height: auto;
+  margin-top: -40px;
 }
 .grid-layout .prop-item .thumbnail h3 {
   margin: 0 0 2px;
@@ -4641,4 +4642,13 @@ ul.list-quote li:first-child {
   .row-offcanvas-left.row-offcanvas-xs.active {
     left: 85%;
   }
+}
+.awesome{
+  font-size: 14px;
+  border-left: 1px solid;
+  padding: 0 12px;
+  display: block;
+  text-align: center;
+  height: 40px;
+  bottom: 0px;
 }

@@ -9,7 +9,6 @@ class CustomerCreationForm(UserCreationForm):
     last_name = forms.CharField(max_length=50)
     email = forms.EmailField(max_length=100)
 
-
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
@@ -26,3 +25,19 @@ class HomeSearchForm(forms.Form):
     class Meta:
         model = Home
         fields = ('zipcode', 'bedrooms', 'bathrooms', 'min_price', 'max_price')
+
+
+class LikeHomeForm(forms.ModelForm):
+    class Meta:
+        model = Home
+        fields = ['address', 'city', 'state', 'zipcode', 'bedrooms',
+                  'bathrooms', 'sqft', 'lot_size', 'year_built',
+                  'price', 'price_per_sqft', 'img']
+
+
+class DislikeHomeForm(forms.ModelForm):
+    class Meta:
+        model = Home
+        fields = ['address', 'city', 'state', 'zipcode', 'bedrooms',
+                  'bathrooms', 'sqft', 'lot_size', 'year_built',
+                  'price', 'price_per_sqft', 'img']

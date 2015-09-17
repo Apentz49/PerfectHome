@@ -54,41 +54,40 @@
 				<div class="col-sm-12 col-md-12 the-title text-left">
 					<div class="row">
 						<div class="col-md-7 col-sm-7 col-xs-8">
-							<h3>Recent Favorited Listing for Sale</h3>
-							<span>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</span>
+							<h3>Homes you recently Liked!</h3>
+							<span></span>
 						</div>
 						<div class="col-md-5 col-sm-5 col-xs-4">
 {#							<a class="pull-right btn btn-flat-alizarin">View More <i class="fa fa-arrow-right"></i></a>#}
 						</div>
 					</div>
 				</div>
-
+                {% for like in like_list %}
 				<div class="prop-item col-sm-6 col-md-4">
 					<div class="thumbnail">
 						<div class="thumbnail-img thumbscrubber">
 						    <span class="ts-inner">
 						    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/89/Semi-detached_house_in_Darlow_Street%2C_Wagga_Wagga.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
+<img src="{{ like.home.img }}" alt="House" class="ts-currslide">
+{#<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">#}
+{#<img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">#}
+{#<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">#}
 						    </span>
 						</div>
 						
 						<div class="thumbnail-body">
 							<div class="caption">
-								<a href="">
-									<h3>Cute House</h3>
-									<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-									<div class="prop-price">$125 <span>/ mo</span></div>
+								<a href={% url 'detail' like.home.id %}>
+									<h3><span class="prop-address">{{ like.home.address }}<br>{{ like.home.city }}, {{ like.home.state }}. {{ like.home.zipcode }}</span></h3>
+									<div class="prop-price">${{ like.home.price|intcomma}}<span></span></div>
 								</a>
 							</div>
 
 							<div class="content clearfix">
 								<ul class="list-unstyled feature-list">
-									<li>4 Bedrooms</li>
-									<li>3 Baths</li>
-									<li>1000 ft <sup>2</sup></li>
+                                <li>{{ like.home.bedrooms }} Bedrooms</li>
+								<li>{{ like.home.bathrooms }} Baths</li>
+								<li>{{ like.home.sqft }} ft <sup>2</sup></li>
 								</ul>
 
 {#								<div class="link-action clearfix">#}
@@ -100,90 +99,29 @@
 
 					</div>
 				</div>
-
-				<div class="prop-item col-sm-6 col-md-4">
-					<div class="thumbnail">
-												
-						<div class="thumbnail-img thumbscrubber">
-						    <span class="ts-inner">
-						    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/c4/Baile_na_Tr%C3%A0gha_471097.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/84/Salle-de-bain.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/cc/Tadelakt_1.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
-
-
-						    </span>
-						</div>
-						
-						<div class="thumbnail-body">
-							<div class="caption">
-								<a href="#">
-									<h3>Long House</h3>
-									<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-									<div class="prop-price">$125 <span>/ mo</span></div>
-								</a>
-							</div>
-
-							<div class="content clearfix">
-								<ul class="list-unstyled feature-list">
-									<li>4 Bedrooms</li>
-									<li>3 Baths</li>
-									<li>1000 ft <sup>2</sup></li>
-								</ul>
-
-								<div class="link-action clearfix">
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite favorited" data-toggle="tooltip" data-placement="top" title="Save to Favorite"><i class="fa fa-star"></i></a>
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Contact Agent"><i class="fa fa-envelope"></i></a>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-
-				<div class="prop-item col-sm-6 col-md-4">
-					<div class="thumbnail">
-							
-						<div class="thumbnail-img thumbscrubber">
-						    <span class="ts-inner">
-						    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/e/ea/Mtlvdbhomes.jpg" alt="House">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/7e/LR1_%284150282769%29.jpg" alt="Family Room" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/84/Bleekman_zimmer.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/0/03/Opo%C4%8Dno_castle_in_2009_23.JPG" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/f/f2/COCINA2.jpg" alt="Kitchen">
+                {% endfor %}
+{#	<div class="pagination-listing">#}
+{##}
+{#<!-- Pagination -->#}
+{#    {% if is_paginated %}#}
+{#<ul class="pagination">#}
+{#        {% if likepg.has_previous %}#}
+{#            <a href="?page={{ likepg.previous_page_number }}">previous</a>#}
+{#        {% endif %}#}
+{##}
+{#        <span class="current">#}
+{#            Page {{ likepg.number }} of {{ likepg.paginator.num_pages }}.#}
+{#        </span>#}
+{##}
+{#        {% if likepg.has_next %}#}
+{#            <a href="?page={{ likepg.next_page_number }}">next</a>#}
+{#        {% endif %}#}
+{#</ul>#}
+{#    {% endif %}#}
+{#<!-- end Pagination -->#}
 
 
-						    </span>
-						</div>
-						
-						<div class="thumbnail-body">
-							<div class="caption">
-								<a href="#">
-									<h3>Semi-Detached House</h3>
-									<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-									<div class="prop-price">$125 <span>/ mo</span></div>
-								</a>
-							</div>
-
-							<div class="content clearfix">
-								<ul class="list-unstyled feature-list">
-									<li>4 Bedrooms</li>
-									<li>3 Baths</li>
-									<li>1000 ft <sup>2</sup></li>
-								</ul>
-
-								<div class="link-action clearfix">
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite favorited" data-toggle="tooltip" data-placement="top" title="You favorited this!"><i class="fa fa-star"></i></a>
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Contact Agent"><i class="fa fa-envelope"></i></a>
-								</div>
-							</div>
-						</div>
-					
-					</div>
-				</div>
+	</div>
 			</div>
 
 		</div>
@@ -194,25 +132,21 @@
 				<div class="col-sm-12 col-md-12 the-title text-left">
 					<div class="row">
 						<div class="col-md-7 col-sm-7 col-xs-8">
-							<h3>Recent Favorited Listing for Rent</h3>
-							<span>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</span>
+							<h3>Homes you recently Disliked!</h3>
+							<span></span>
 						</div>
 						<div class="col-md-5 col-sm-5 col-xs-4">
 {#							<a class="pull-right btn btn-flat-alizarin">View More <i class="fa fa-arrow-right"></i></a>#}
 						</div>
 					</div>
 				</div>
-
+                {% for dislike in dislike_list %}
 				<div class="prop-item col-sm-6 col-md-4">
 					<div class="thumbnail">
 						<div class="thumbnail-img thumbscrubber">
 						    <span class="ts-inner">
 						    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b0/Semi-Detached_House_with_Ford_Escort_car.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Family_room_in_Camarillo%2C_California%2C_USA.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Bedroom_Mitcham.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/c1/Calhoun_bathroom.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/e/e7/Highgrove_Kitchen.jpg" alt="Kitchen">
+<img src="{{ dislike.home.img }}" alt="House" class="ts-currslide">
 
 
 						    </span>
@@ -220,110 +154,45 @@
 						
 						<div class="thumbnail-body">
 							<div class="caption">
-								<a href="">
-									<h3>Cute House</h3>
-									<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-									<div class="prop-price">$125 <span>/ mo</span></div>
+								<a href={% url 'detail' dislike.home.id %}>
+									<h3><span class="prop-address">{{ dislike.home.address }}<br>{{ dislike.home.city }}, {{ dislike.home.state }}. {{ dislike.home.zipcode }}</span></h3>
+									<div class="prop-price">${{ dislike.home.price|intcomma}}<span></span></div>
 								</a>
 							</div>
 
 							<div class="content clearfix">
 								<ul class="list-unstyled feature-list">
-									<li>4 Bedrooms</li>
-									<li>3 Baths</li>
-									<li>1000 ft <sup>2</sup></li>
+                                <li>{{ dislike.home.bedrooms }} Bedrooms</li>
+								<li>{{ dislike.home.bathrooms }} Baths</li>
+								<li>{{ dislike.home.sqft }} ft <sup>2</sup></li>
 								</ul>
 
 								<div class="link-action clearfix">
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite favorited" data-toggle="tooltip" data-placement="top" title="Save to Favorite"><i class="fa fa-star"></i></a>
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Contact Agent"><i class="fa fa-envelope"></i></a>
+{#									<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite favorited" data-toggle="tooltip" data-placement="top" title="Save to Favorite"><i class="fa fa-star"></i></a>#}
+{#									<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Contact Agent"><i class="fa fa-envelope"></i></a>#}
 								</div>
 							</div>
 						</div>
 
 					</div>
 				</div>
-
-				<div class="prop-item col-sm-6 col-md-4">
-					<div class="thumbnail">
-												
-						<div class="thumbnail-img thumbscrubber">
-						    <span class="ts-inner">
-						    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/89/Semi-detached_house_in_Darlow_Street%2C_Wagga_Wagga.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
-						    </span>
-						</div>
-						
-						<div class="thumbnail-body">
-							<div class="caption">
-								<a href="#">
-									<h3>Long House</h3>
-									<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-									<div class="prop-price">$125 <span>/ mo</span></div>
-								</a>
-							</div>
-
-							<div class="content clearfix">
-								<ul class="list-unstyled feature-list">
-									<li>4 Bedrooms</li>
-									<li>3 Baths</li>
-									<li>1000 ft <sup>2</sup></li>
-								</ul>
-
-								<div class="link-action clearfix">
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite favorited" data-toggle="tooltip" data-placement="top" title="Save to Favorite"><i class="fa fa-star"></i></a>
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Contact Agent"><i class="fa fa-envelope"></i></a>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-
-				<div class="prop-item col-sm-6 col-md-4">
-					<div class="thumbnail">
-							
-						<div class="thumbnail-img thumbscrubber">
-						    <span class="ts-inner">
-						    	
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/c4/Baile_na_Tr%C3%A0gha_471097.jpg" alt="House" class="ts-currslide">
-<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">
-<img src="http://upload.wikimedia.org/wikipedia/commons/8/84/Salle-de-bain.jpg" alt="Bedroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/c/cc/Tadelakt_1.jpg" alt="Bathroom">
-<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">
+                {% endfor %}
+{#	<div class="pagination-listing">#}
+{##}
+{#<!-- Pagination -->#}
+{#<ul class="pagination">#}
+{#    {% if dislike.page_obj.has_previous %}#}
+{#	<li><a href="?q={{ dislike.search }}&page={{ dislike.page_obj.previous_page_number }}"><i class="fa fa-chevron-left"></i> Previous</a></li>#}
+{#    {% endif %}#}
+{#	<li class="active"><a>Page {{ dislike.page_obj.number }} of {{ dislike.paginator.num_pages }} </a></li>#}
+{#    {% if page_obj.has_next %}#}
+{#	<li><a href="?q={{ dislike.search }}&page={{ dislike.page_obj.next_page_number }}">Next <i class="fa fa-chevron-right"></i></a></li>#}
+{#    {% endif %}#}
+{#</ul>#}
+{#<!-- end Pagination -->#}
 
 
-						    </span>
-						</div>
-						
-						<div class="thumbnail-body">
-							<div class="caption">
-								<a href="#">
-									<h3>Semi-Detached House</h3>
-									<span class="prop-address">12, Bull Road, Kuala Lumpur</span>
-									<div class="prop-price">$125 <span>/ mo</span></div>
-								</a>
-							</div>
-
-							<div class="content clearfix">
-								<ul class="list-unstyled feature-list">
-									<li>4 Bedrooms</li>
-									<li>3 Baths</li>
-									<li>1000 ft <sup>2</sup></li>
-								</ul>
-
-								<div class="link-action clearfix">
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite favorited" data-toggle="tooltip" data-placement="top" title="You favorited this!"><i class="fa fa-star"></i></a>
-									<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Contact Agent"><i class="fa fa-envelope"></i></a>
-								</div>
-							</div>
-						</div>
-					
-					</div>
-				</div>
+	</div>
 			</div>
 
 		</div>
@@ -335,6 +204,6 @@
 				</div>
 
 					</div>
-				</div>
+        </div>
 			</div>
 {% endblock %}

@@ -183,8 +183,8 @@
 					</div>
 				</div>
 			</div>
-            {% for home in homelist|slice:":4" %}
-			<div class="prop-item col-sm-6 col-md-3">
+            {% for home in homelist|slice:"3:7" %}
+			<div class="prop-item col-sm-6 col-md-3" style="height: 366px">
 				<div class="thumbnail">
 					<div class="thumbnail-img thumbscrubber">
 					    <span class="ts-inner">
@@ -212,10 +212,10 @@
 								<li>{{ home.sqft }} ft <sup>2</sup></li>
 							</ul>
 
-							<div class="link-action clearfix">
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You like this!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-								<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not your style!"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-							</div>
+{#							<div class="link-action clearfix">#}
+{#								<a href="#" class="col-md-6 col-sm-6 col-xs-6 save-favorite" data-toggle="tooltip" data-placement="top" title="You like this!"><i class="fa fa-thumbs-o-up fa-2x"></i></a>#}
+{#								<a href="#" class="col-md-6 col-sm-6 col-xs-6 contact-agent" data-toggle="tooltip2" data-placement="top" title="Not your style!"><i class="fa fa-thumbs-o-down fa-2x"></i></a>#}
+{#							</div>#}
 						</div>
 					</div>
 
