@@ -152,3 +152,20 @@ def profile_view(request, user_id):
     return render(request, 'user-overview.html', {'like_list': like_list,
                                                   'dislike_list':
                                                       dislike_list})
+
+
+def profile_view_likes(request, user_id):
+    user = request.user
+    customer = user.customer
+    like_list = Like.objects.all()
+
+    return render(request, 'user-account-like.html', {'like_list': like_list})
+
+
+def profile_view_dislikes(request, user_id):
+    user = request.user
+    customer = user.customer
+    dislike_list = Dislike.objects.all()
+
+    return render(request, 'user-account-dislike.html',
+                  {'dislike_list': dislike_list})

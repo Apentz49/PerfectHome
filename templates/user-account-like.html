@@ -7,7 +7,7 @@
 	<div class="site-row row-offcanvas row-offcanvas-left">
 
 <section id="profile-info">
-	
+
 	<div class="profile-cover-section">
 		<div class="title-section-img">
 			<img src={% static "img/img-coverphoto.jpg" style="top: -380px;"%}/>
@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="profile-cover-info"></div>
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -29,8 +29,8 @@
 				<div class="clearfix"></div>
 				<div class="collapse navbar-collapse" id="collapse-profile">
 					<ul id="profiletab" class="nav nav-tabs nav-tabs-hollo">
-						<li class="current active"><a class='current' href="{% url 'profile' user.pk %}">Overview</a></li>
-                        <li><a href="{% url 'userlikes' user.pk %}">Liked</a></li>
+						<li><a href="{% url 'profile' user.pk %}">Overview</a></li>
+                        <li class="current active"><a class="current" href="{% url 'userlikes' user.pk %}">Liked</a></li>
                         <li><a href="{% url 'userdislikes' user.pk %}">Disliked</a></li>
 					</ul>
 				</div>
@@ -68,14 +68,14 @@
 					<div class="thumbnail">
 						<div class="thumbnail-img thumbscrubber">
 						    <span class="ts-inner">
-						    	
+
 <img src="{{ like.home.img }}" alt="House" class="ts-currslide">
 {#<img src="http://upload.wikimedia.org/wikipedia/commons/7/75/Family-room-700.jpg" alt="Family Room">#}
 {#<img src="http://upload.wikimedia.org/wikipedia/commons/3/39/METLA_SUIHKU_big.jpg" alt="Bathroom">#}
 {#<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Fully_Furnished_Atenas_Apartments_for_rent.jpg" alt="Kitchen">#}
 						    </span>
 						</div>
-						
+
 						<div class="thumbnail-body">
 							<div class="caption">
 								<a href={% url 'detail' like.home.id %}>
@@ -101,54 +101,54 @@
 
 		</div>
 
-		<!-- Listing Rent -->
-		<div class="product-list grid-layout clearfix">
-			<div class="row">
-				<div class="col-sm-12 col-md-12 the-title text-left">
-					<div class="row">
-						<div class="col-md-7 col-sm-7 col-xs-8">
-							<h3>Homes you recently Disliked!</h3>
-							<span></span>
-						</div>
-						<div class="col-md-5 col-sm-5 col-xs-4">
-						</div>
-					</div>
-				</div>
-                {% for dislike in dislike_list %}
-				<div class="prop-item col-sm-6 col-md-4">
-					<div class="thumbnail">
-						<div class="thumbnail-img thumbscrubber">
-						    <span class="ts-inner">
-						    	
-<img src="{{ dislike.home.img }}" alt="House" class="ts-currslide">
-
-
-						    </span>
-						</div>
-						
-						<div class="thumbnail-body">
-							<div class="caption">
-								<a href={% url 'detail' dislike.home.id %}>
-									<h3><span class="prop-address">{{ dislike.home.address }}<br>{{ dislike.home.city }}, {{ dislike.home.state }}. {{ dislike.home.zipcode }}</span></h3>
-									<div class="prop-price">${{ dislike.home.price|intcomma}}<span></span></div>
-								</a>
-							</div>
-
-							<div class="content clearfix">
-								<ul class="list-unstyled feature-list">
-                                <li>{{ dislike.home.bedrooms }} Bedrooms</li>
-								<li>{{ dislike.home.bathrooms }} Baths</li>
-								<li>{{ dislike.home.sqft }} ft <sup>2</sup></li>
-								</ul>
-
-								<div class="link-action clearfix">
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-                {% endfor %}
+{#		<!-- Listing Rent -->#}
+{#		<div class="product-list grid-layout clearfix">#}
+{#			<div class="row">#}
+{#				<div class="col-sm-12 col-md-12 the-title text-left">#}
+{#					<div class="row">#}
+{#						<div class="col-md-7 col-sm-7 col-xs-8">#}
+{#							<h3>Homes you recently Disliked!</h3>#}
+{#							<span></span>#}
+{#						</div>#}
+{#						<div class="col-md-5 col-sm-5 col-xs-4">#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#                {% for dislike in dislike_list %}#}
+{#				<div class="prop-item col-sm-6 col-md-4">#}
+{#					<div class="thumbnail">#}
+{#						<div class="thumbnail-img thumbscrubber">#}
+{#						    <span class="ts-inner">#}
+{#						    	#}
+{#                            <img src="{{ dislike.home.img }}" alt="House" class="ts-currslide">#}
+{##}
+{##}
+{#						    </span>#}
+{#						</div>#}
+{#						#}
+{#						<div class="thumbnail-body">#}
+{#							<div class="caption">#}
+{#								<a href={% url 'detail' dislike.home.id %}>#}
+{#									<h3><span class="prop-address">{{ dislike.home.address }}<br>{{ dislike.home.city }}, {{ dislike.home.state }}. {{ dislike.home.zipcode }}</span></h3>#}
+{#									<div class="prop-price">${{ dislike.home.price|intcomma}}<span></span></div>#}
+{#								</a>#}
+{#							</div>#}
+{##}
+{#							<div class="content clearfix">#}
+{#								<ul class="list-unstyled feature-list">#}
+{#                                <li>{{ dislike.home.bedrooms }} Bedrooms</li>#}
+{#								<li>{{ dislike.home.bathrooms }} Baths</li>#}
+{#								<li>{{ dislike.home.sqft }} ft <sup>2</sup></li>#}
+{#								</ul>#}
+{##}
+{#								<div class="link-action clearfix">#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{##}
+{#					</div>#}
+{#				</div>#}
+{#                {% endfor %}#}
 	</div>
 			</div>
 
