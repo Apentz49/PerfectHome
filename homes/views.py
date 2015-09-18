@@ -2,6 +2,7 @@ import datetime
 from functools import reduce
 import operator
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -70,20 +71,65 @@ class HomeSearchListView(ListView):
         return context
 
     def get_queryset(self):
+        """
+        This will generate the query_set from the search fields
+        """
         result = super(HomeSearchListView, self).get_queryset()
 
-        query = self.request.GET.get('q')
-        if query:
-            query_list = query.split()
-            result = result.filter(
-                reduce(operator.and_,
-                       (Q(zipcode__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                       (Q(city__icontains=q) for q in query_list))
+        q = self.request.GET.get('q')
+        pmin = self.request.GET.get('pmin')
+        pmax = self.request.GET.get('pmax')
+        bed = self.request.GET.get('bed')
+        bath = self.request.GET.get('bath')
 
-            )
-        result = result.exclude(like__isnull=False)
-        result = result.exclude(dislike__isnull=False)
+        query_list = q.split()
+
+        if q:
+            if not (((pmin or pmax) or bed) or bath):
+                result = result.filter(
+                    reduce(operator.and_,
+                           (Q(zipcode__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(city__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(state__icontains=q) for q in query_list))
+                )
+        if (q and pmin)and pmax:
+            if not (bed or bath):
+                result = result.filter(
+                    reduce(operator.and_,
+                           (Q(zipcode__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(city__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(state__icontains=q) for q in query_list)),
+                    Q(price__gte=pmin, price__lte=pmax)
+                )
+        if q and pmax:
+            if not ((pmin and bed)and bath):
+                result = result.filter(
+                    reduce(operator.and_,
+                           (Q(zipcode__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(city__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(state__icontains=q) for q in query_list)),
+                    Q(price__lte=pmax)
+                )
+        if (((q and pmin)and pmax)and bed)and bath:
+                result = result.filter(
+                    reduce(operator.and_,
+                           (Q(zipcode__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(city__icontains=q) for q in query_list)) |
+                    reduce(operator.and_,
+                           (Q(state__icontains=q) for q in query_list)),
+                    Q(price__gte=pmin, price__lte=pmax,
+                      bedrooms__icontains=bed, bathrooms__icontains=bath)
+                )
+
+        result = result.filter(like__isnull=True)
+        result = result.filter(dislike__isnull=True)
 
         return result
 
@@ -98,7 +144,9 @@ class HomeDetail(DetailView):
 
 
 class LikeHomes(ListView):
-
+    """
+    View for the Likes List
+    """
     model = Home
     context_object_name = 'like_list'
     queryset = Like.objects.all()
@@ -110,7 +158,9 @@ class LikeHomes(ListView):
         return context
 
 
+@login_required
 def home_like(request, home_id):
+    # This creates a Like on a Home #
     user = request.user
     customer = user.customer
     home = Home.objects.get(id=home_id)
@@ -121,7 +171,9 @@ def home_like(request, home_id):
 
 
 class DislikeHomes(ListView):
-
+    """
+    View for Dislike list
+    """
     model = Home
     context_object_name = 'dislike_list'
     queryset = Dislike.objects.all()
@@ -133,7 +185,9 @@ class DislikeHomes(ListView):
         return context
 
 
+@login_required
 def home_dislike(request, home_id):
+    # Create a Dislike on a Home #
     user = request.user
     customer = user.customer
     home = Home.objects.get(id=home_id)
@@ -143,29 +197,37 @@ def home_dislike(request, home_id):
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
+@login_required
 def profile_view(request, user_id):
+    # View to display both Like and Dislike Homes on the profile #
     user = request.user
     customer = user.customer
-    like_list = Like.objects.all()
-    dislike_list = Dislike.objects.all()
+    like_list = Like.objects.filter(user=customer).order_by('home').reverse()
+    dislike_list = Dislike.objects.filter(
+        user=customer).order_by('home').reverse()
 
     return render(request, 'user-overview.html', {'like_list': like_list,
                                                   'dislike_list':
                                                       dislike_list})
 
 
+@login_required
 def profile_view_likes(request, user_id):
+    # View to display Like Homes in profile Like tab #
     user = request.user
     customer = user.customer
-    like_list = Like.objects.all()
+    like_list = Like.objects.filter(user=customer).order_by('home').reverse()
 
     return render(request, 'user-account-like.html', {'like_list': like_list})
 
 
+@login_required
 def profile_view_dislikes(request, user_id):
+    # View to display Dislike Homes in profile Dislike tab #
     user = request.user
     customer = user.customer
-    dislike_list = Dislike.objects.all()
+    dislike_list = Dislike.objects.filter(
+        user=customer).order_by('home').reverse()
 
     return render(request, 'user-account-dislike.html',
                   {'dislike_list': dislike_list})
